@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+	</head>
+	<body>
+
+		<ul>
+			<li><input type="text" value="11122233344"> <button>reFormat</button></li>
+			<li><input type="text" value="1133445564"> <button>reFormat</button></li>
+			<li><input type="text" value="1 12359-­03"> <button>reFormat</button></li>
+			<li><input type="text" value="1­-2 2233-­1"> <button>reFormat</button></li>
+			<li><input type="text" value="2345666145666"> <button>reFormat</button></li>
+		</ul>
+
+		<script src="phoneMatter.js"></script>
+
+		<script>
+			var lis = document.querySelectorAll('li');
+			[].forEach.call(lis, function(li){
+				var input = li.querySelector('input[type="text"]');
+				var button = li.querySelector('button');
+
+				if ( !button || !input ) { return; }
+
+				button.addEventListener('click', function(){
+					var formatted = phoneMatter.format( input.value ); // i do closure the input variable, yes.
+					input.title = input.value;
+					input.value = formatted[0].isValid ? formatted[0].output : formatted[0].input;
+				});
+			});
+		</script>
+	</body>
+	</html>
